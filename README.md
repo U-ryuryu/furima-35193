@@ -32,20 +32,15 @@
 
 ### Association
 
-- belongs_to             :user
-- has_one                :purchase
-- belongs_to_active_hash :category
-- belongs_to_active_hash :status
-- belongs_to_active_hash :payment
-- belongs_to_active_hash :prefecture
-- belongs_to_active_hash :delivery_day
+- belongs_to :user
+- has_one    :purchase
 
 ## purchase
 
 | Column           | Type       | Options                        |
 | ---------------- | ---------- | ------------------------------ |
 | user             | references | null: false, foreign_key: true |
-| items            | references | null: false, foreign_key: true |
+| item             | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -60,7 +55,7 @@
 | postal_code      | string     | null: false                    |
 | city             | string     | null: false                    |
 | address          | string     | null: false                    |
-| building         | string     | null: false                    |
+| building         | string     |                                |
 | tel              | string     | null: false                    |
 | prefecture_id    | integer    | null: false                    |
 | purchase         | references | null: false, foreign_key: true |
@@ -68,4 +63,3 @@
 ### Association
 
 - belongs_to             :purchase
-- belongs_to_active_hash :prefecture
