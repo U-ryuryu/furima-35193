@@ -153,6 +153,12 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include("Email is invalid")
     end
 
+    it "emailは@が含まれていなければ登録でないこと" do
+      @user.email = "abc123"
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Email is invalid")
+    end
+
     it "重複したemailが存在する場合登録できないこと" do
       @user.save
       anather_user = FactoryBot.build(:user, email: @user.email)
