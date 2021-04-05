@@ -15,7 +15,7 @@ class Item < ApplicationRecord
     validates :image
   end
 
-  with_options numericality: { other_than: 1 } do
+  with_options numericality: { other_than: 1, message: 'please select other than "---"' } do
     validates :category_id
     validates :status_id
     validates :payment_id
