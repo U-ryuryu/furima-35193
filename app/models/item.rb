@@ -23,7 +23,7 @@ class Item < ApplicationRecord
     validates :delivery_day_id
   end
   
-  validates :price, format: { with: /\A[1-9][0-9]+\z/, message: "only half-width numbers can be entered" }, if: Proc.new {|item|item.price.present?}
+  validates :price, numericality: { with: /\A[0-9]+\z/, message: "only half-width numbers can be entered" }, if: Proc.new {|item|item.price.present?}
   validates :price, numericality: { 
     greater_than_or_equal_to: 300, less_than: 10000000, message: "out of the numerical range"
   }, if: Proc.new {|item|item.price.present?}
