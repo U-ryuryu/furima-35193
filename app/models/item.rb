@@ -9,7 +9,7 @@ class Item < ApplicationRecord
   has_one_attached :image
 
   with_options presence: true do
-    validates :name 
+    validates :name
     validates :description
     validates :price
     validates :image
@@ -22,9 +22,11 @@ class Item < ApplicationRecord
     validates :prefecture_id
     validates :delivery_day_id
   end
-  
-  validates :price, numericality: { with: /\A[0-9]+\z/, message: "only half-width numbers can be entered" }, if: Proc.new {|item|item.price.present?}
-  validates :price, numericality: { 
-    greater_than_or_equal_to: 300, less_than: 10000000, message: "out of the numerical range"
-  }, if: Proc.new {|item|item.price.present?}
+
+  validates :price, numericality: { with: /\A[0-9]+\z/, message: 'only half-width numbers can be entered' }, if: proc { |item|
+                                                                                                                   item.price.present?
+                                                                                                                 }
+  validates :price, numericality: {
+    greater_than_or_equal_to: 300, less_than: 10_000_000, message: 'out of the numerical range'
+  }, if: proc { |item| item.price.present? }
 end
