@@ -7,6 +7,9 @@ class PurchasesController < ApplicationController
   def index
   end
 
+  def create
+  end
+
   private
 
   def item_find
