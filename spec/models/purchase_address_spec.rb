@@ -100,7 +100,7 @@ RSpec.describe PurchaseAddress, type: :model do
       end
 
       it 'prefecture_idが1では登録できないこと' do
-        @purchase_address.prefecture_id = '1'
+        @purchase_address.prefecture_id = 1
         @purchase_address.valid?
         expect(@purchase_address.errors.full_messages).to include('Prefecture please select other than "---"')
       end
