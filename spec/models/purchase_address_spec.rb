@@ -3,7 +3,11 @@ require 'rails_helper'
 RSpec.describe PurchaseAddress, type: :model do
   describe '#create' do
     before do
+      @user = FactoryBot.build(:user)
+      @item = FactoryBot.build(:item)
       @purchase_address = FactoryBot.build(:purchase_address)
+      @purchase_address.user_id = @user.id
+      @purchase_address.item_id = @item.id
     end
 
     context '購入できる場合' do
@@ -13,6 +17,11 @@ RSpec.describe PurchaseAddress, type: :model do
 
       it 'telが11桁以下の数字なら登録できること' do
         @purchase_address.tel = '99999999999'
+        expect(@purchase_address).to be_valid
+      end
+
+      it 'buildingが空でも登録できること' do
+        @purchase_address.building = nil
         expect(@purchase_address).to be_valid
       end
     end
