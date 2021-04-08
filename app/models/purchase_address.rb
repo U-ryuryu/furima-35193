@@ -10,18 +10,15 @@ class PurchaseAddress
     validates :city
     validates :address
     validates :tel
-    validates :purchase_id
   end
 
   validates :prefecture_id, numericality: {other_than: 1, message: 'please select other than "---"'}
 
-  with_options if: proc { |purchase_address| purchase_address.postal_code.present? } do
-    validates :postal_code format: { with: /\A\d{3}[-]\d{4}\z/, message: 'requires "-"'}
+    validates :postal_code, format: { with: /\A\d{3}[-]\d{4}\z/, message: 'requires "-"'}, if: proc { |purchase_address| purchase_address.postal_code.present? }
 
-    validates :tel namericality: {only_integer: true, message: 'only half-width numbers can be entered'}
+    validates :tel, numericality: {only_integer: true, message: 'only half-width numbers can be entered'}, if: proc { |purchase_address| purchase_address.tel.present? }
 
-    validates :tel length: { maxmum: 11}
-  end
+    validates :tel, length: { maximum: 11}
 
   def save
     purchase = Purchase.create(user_id: user_id, item_id: item_id)

@@ -5,18 +5,19 @@ class PurchasesController < ApplicationController
   
 
   def index
-    @purchase = Purchase.new
+    @purchase_address = PurchaseAddress.new
   end
 
   def create
-    # @purchase = Purchase.new(purchase_params)  formオブジェクト追加後実装
-    # if @purchase.valid?   formオブジェクト追加後実装
+    binding.pry
+    @purchase_address = PurchaseAddress.new(purchase_params)
+    if @purchase_address.valid?
       pay_item
-      # @purchase.save    formオブジェクト追加後実装 return
-      redirect_to root_path
-    # else
-    #   render 'index'   formオブジェクト追加後実装
-    # end
+      @purchase_address.save
+      return redirect_to root_path
+    else
+    render :index
+    end
   end
 
   private
@@ -30,14 +31,14 @@ class PurchasesController < ApplicationController
   end
 
   def purchase_params
-    params.permit(:token, :item_id).merge(user_id: current_user.id)
+    params.require(:purchase_address).permit(:postal_code, :city, :address, :building, :tel, :prefecture_id).merge(token: params[:token],user_id: current_user.id, item_id: params[:item_id])
   end
 
   def pay_item
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
     Payjp::Charge.create(
       amount: @item.price,
-      card: params[:token],
+      card: @purchase_address.token,
       currency: 'jpy'
     )
   end
