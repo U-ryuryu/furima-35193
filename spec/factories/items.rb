@@ -1,6 +1,5 @@
 FactoryBot.define do
   factory :item do
-    id              { Faker::Number.between(from: 1, to: 500)}
     name            { Faker::Coffee.blend_name }
     description     { Faker::Coffee.notes }
     price           { Faker::Number.between(from: 300, to: 9_999_999) }
