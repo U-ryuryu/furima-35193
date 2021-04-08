@@ -81,7 +81,7 @@ RSpec.describe PurchaseAddress, type: :model do
         expect(@purchase_address.errors.full_messages).to include("Tel can't be blank")
       end
 
-      it 'telが11桁以上では登録できないこと' do
+      it 'telが12桁以上では登録できないこと' do
         @purchase_address.tel = '111111111111'
         @purchase_address.valid?
         expect(@purchase_address.errors.full_messages).to include('Tel is too long (maximum is 11 characters)')
