@@ -12,7 +12,7 @@ RSpec.describe PurchaseAddress, type: :model do
       end
 
       it 'telが11桁以下の数字なら登録できること' do
-        @purchase_address.tel = "99999999999"
+        @purchase_address.tel = '99999999999'
         expect(@purchase_address).to be_valid
       end
     end
@@ -45,13 +45,13 @@ RSpec.describe PurchaseAddress, type: :model do
       it 'postal_codeにハイフンがなくては登録できないこと' do
         @purchase_address.postal_code = '1234444'
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include("Postal code requires \"-\"")
+        expect(@purchase_address.errors.full_messages).to include('Postal code requires "-"')
       end
-      
+
       it 'postal_codeが3文字-4文字でなくては登録できないこと' do
         @purchase_address.postal_code = '1234-444'
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include("Postal code requires \"-\"")
+        expect(@purchase_address.errors.full_messages).to include('Postal code requires "-"')
       end
 
       it 'cityが空では登録できないこと' do
@@ -73,27 +73,27 @@ RSpec.describe PurchaseAddress, type: :model do
       end
 
       it 'telが11桁以上では登録できないこと' do
-        @purchase_address.tel = "111111111111"
+        @purchase_address.tel = '111111111111'
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include("Tel is too long (maximum is 11 characters)")
+        expect(@purchase_address.errors.full_messages).to include('Tel is too long (maximum is 11 characters)')
       end
 
       it 'telに全角数字が含まれていると登録できないこと' do
-        @purchase_address.tel = "12３45６78９"
+        @purchase_address.tel = '12３45６78９'
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include("Tel only half-width numbers can be entered")
+        expect(@purchase_address.errors.full_messages).to include('Tel only half-width numbers can be entered')
       end
 
       it 'telに数字以外が含まれていると登録できないこと' do
-        @purchase_address.tel = "12as4455"
+        @purchase_address.tel = '12as4455'
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include("Tel only half-width numbers can be entered")
+        expect(@purchase_address.errors.full_messages).to include('Tel only half-width numbers can be entered')
       end
 
       it 'prefecture_idが1では登録できないこと' do
-        @purchase_address.prefecture_id = "1"
+        @purchase_address.prefecture_id = '1'
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include("Prefecture please select other than \"---\"")
+        expect(@purchase_address.errors.full_messages).to include('Prefecture please select other than "---"')
       end
     end
   end
