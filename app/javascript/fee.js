@@ -19,4 +19,6 @@ function calc (){
   })
 }
 
-window.addEventListener('load', calc)
+if ( document.getElementById("item-price") != null) {
+window.addEventListener('load', calc);
+}
