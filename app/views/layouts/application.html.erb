@@ -7,11 +7,26 @@
   <%= csp_meta_tag %>
   <script type="text/javascript" src="https://js.pay.jp/v1/"></script>
   <%= stylesheet_link_tag 'application', media: 'all'%>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.4.5/css/swiper.min.css">
   <%= javascript_pack_tag 'application' %>
 </head>
 
 <body>
   <%= yield %>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.4.5/js/swiper.min.js"></script>
+  <script>
+    const swiper = new Swiper('.swiper-container',{
+      loop: true,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },pagination: {
+		    el: '.swiper-pagination',
+	      type: 'bullets',
+	  	  clickable: true
+      }
+    });
+  </script>
 </body>
 
 </html>

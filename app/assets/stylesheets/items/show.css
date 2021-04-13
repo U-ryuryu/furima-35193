@@ -205,3 +205,15 @@
   font-weight: bold;
   font-size: 23px;
 }
+
+.swiper-container {
+  width: 80%;
+}
+
+.swiper-slide {
+  text-align: center;
+}
+
+.swiper-button-prev .swiper-button-next {
+  z-index: 2;
+}

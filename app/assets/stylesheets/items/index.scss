@@ -267,6 +267,7 @@ a {
   text-align: center;
   background-color: crimson;
   transform: skewY(-10deg);
+  z-index: 1;
 }
 
 .sold-out>span {
