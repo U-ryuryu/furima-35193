@@ -5,16 +5,22 @@
     <h2 class="name">
       <%= @item.name %>
     </h2>
-    <div class="item-img-content">
-      <% @item.images.each do |image|%>
-        <%= image_tag image ,class:"item-box-img" %>
-        <% if @item.purchase.present?%>
-          <div class="sold-out">
-            <span>Sold Out!!</span>
-          </div>
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <% @item.images.each do |image|%>
+          <div class="swiper-slide"><%= image_tag image ,class:"item-box-img" %></div>
         <% end %>
+      </div>
+      <div class="swiper-pagination"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+      <% if @item.purchase.present?%>
+        <div class="sold-out">
+          <span>Sold Out!!</span>
+        </div>
       <% end %>
     </div>
+
     <div class="item-price-box">
       <span class="item-price">
         <%= "¥ #{@item.price.to_s(:delimited)}" %>
