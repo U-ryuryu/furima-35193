@@ -19,6 +19,6 @@ function calc (){
   })
 }
 
-if ( document.getElementById("item-price") != null) {
+if (document.URL.match( /items/ )) {
 window.addEventListener('load', calc);
 }

@@ -6,14 +6,14 @@ class Item < ApplicationRecord
   belongs_to       :prefecture
   belongs_to       :delivery_day
   belongs_to       :user
-  has_one_attached :image
+  has_many_attached :images
   has_one         :purchase
 
   with_options presence: true do
     validates :name
     validates :description
     validates :price
-    validates :image
+    validates :images
   end
 
   with_options numericality: { other_than: 1, message: 'please select other than "---"' } do
