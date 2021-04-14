@@ -17,19 +17,18 @@ class User < ApplicationRecord
     validates :read_first_name
     validates :birthday
   end
-  validates :password, format: { with: PASSWORD_REGEX, message: 'Use both English and numbers' }, if: proc { |user|
-                                                                                                        user.password.present?
-                                                                                                      }
-  validates :read_last_name, format: { with: KANA_REGEX, message: 'Please enter in the full-width katakana' }, if: proc { |user|
-                                                                                                                     user.read_last_name.present?
-                                                                                                                   }
-  validates :read_first_name, format: { with: KANA_REGEX, message: 'Please enter in the full-width katakana' }, if: proc { |user|
-                                                                                                                      user.read_first_name.present?
-                                                                                                                    }
-  validates :last_name, format: { with: NAME_REGEX, message: 'Please enter full-width Japanese' }, if: proc { |user|
-                                                                                                         user.last_name.present?
-                                                                                                       }
-  validates :first_name, format: { with: NAME_REGEX, message: 'Please enter full-width Japanese' }, if: proc { |user|
-                                                                                                          user.first_name.present?
-                                                                                                        }
+
+  validates :password, format: { with: PASSWORD_REGEX, message: 'は半角英数字の組合せで入力してください' }, if: proc { |user|user.password.present?}
+
+  with_options format: { with: KANA_REGEX, message: 'は全角カタカナで入力してください' } do
+    validates :read_last_name, if: proc { |user|user.read_last_name.present?}
+
+    validates :read_first_name, if: proc { |user|user.read_first_name.present?}
+  end
+
+  with_options format: { with: NAME_REGEX, message: 'は全角日本語で入力してください' } do
+    validates :last_name, if: proc { |user|user.last_name.present?}
+
+    validates :first_name, if: proc { |user|user.first_name.present?}
+  end
 end

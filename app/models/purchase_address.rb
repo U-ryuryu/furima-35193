@@ -12,13 +12,13 @@ class PurchaseAddress
     validates :tel
   end
 
-  validates :prefecture_id, numericality: { other_than: 1, message: 'please select other than "---"' }
+  validates :prefecture_id, numericality: { other_than: 1, message: 'を選択してください' }
 
-  validates :postal_code, format: { with: /\A\d{3}-\d{4}\z/, message: 'requires "-"' }, if: proc { |purchase_address|
+  validates :postal_code, format: { with: /\A\d{3}-\d{4}\z/, message: 'はハイフン(-)を含む半角数字7桁で入力してください' }, if: proc { |purchase_address|
                                                                                               purchase_address.postal_code.present?
                                                                                             }
 
-  validates :tel, numericality: { only_integer: true, message: 'only half-width numbers can be entered' }, if: proc { |purchase_address|
+  validates :tel, numericality: { only_integer: true, message: '半角数字のみで入力してください' }, if: proc { |purchase_address|
                                                                                                                  purchase_address.tel.present?
                                                                                                                }
 
