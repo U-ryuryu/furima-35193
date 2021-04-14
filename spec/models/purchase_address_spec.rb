@@ -5,7 +5,7 @@ RSpec.describe PurchaseAddress, type: :model do
     before do
       @user = FactoryBot.create(:user)
       @item = FactoryBot.create(:item)
-      sleep(0.01)
+      sleep(0.08)
       @purchase_address = FactoryBot.build(:purchase_address)
       @purchase_address.user_id = @user.id
       @purchase_address.item_id = @item.id
@@ -55,13 +55,13 @@ RSpec.describe PurchaseAddress, type: :model do
       it 'postal_codeにハイフンがなくては登録できないこと' do
         @purchase_address.postal_code = '1234444'
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include('Postal code requires "-"')
+        expect(@purchase_address.errors.full_messages).to include('Postal code はハイフン(-)を含む半角数字7桁で入力してください')
       end
 
       it 'postal_codeが3文字-4文字でなくては登録できないこと' do
         @purchase_address.postal_code = '1234-444'
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include('Postal code requires "-"')
+        expect(@purchase_address.errors.full_messages).to include('Postal code はハイフン(-)を含む半角数字7桁で入力してください')
       end
 
       it 'cityが空では登録できないこと' do
@@ -91,19 +91,19 @@ RSpec.describe PurchaseAddress, type: :model do
       it 'telに全角数字が含まれていると登録できないこと' do
         @purchase_address.tel = '12３45６78９'
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include('Tel only half-width numbers can be entered')
+        expect(@purchase_address.errors.full_messages).to include('Tel 半角数字のみで入力してください')
       end
 
       it 'telに数字以外が含まれていると登録できないこと' do
         @purchase_address.tel = '12as4455'
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include('Tel only half-width numbers can be entered')
+        expect(@purchase_address.errors.full_messages).to include('Tel 半角数字のみで入力してください')
       end
 
       it 'prefecture_idが1では登録できないこと' do
         @purchase_address.prefecture_id = 1
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include('Prefecture please select other than "---"')
+        expect(@purchase_address.errors.full_messages).to include('Prefecture を選択してください')
       end
     end
   end
