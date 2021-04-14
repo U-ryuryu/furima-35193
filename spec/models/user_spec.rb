@@ -103,21 +103,21 @@ RSpec.describe User, type: :model do
         @user.password = '123456'
         @user.password_confirmation = @user.password
         @user.valid?
-        expect(@user.errors.full_messages).to include('Password Use both English and numbers')
+        expect(@user.errors.full_messages).to include('Password は半角英数字の組合せで入力してください')
       end
 
       it 'passwordが英字のみでは登録できないこと' do
         @user.password = 'abcdef'
         @user.password_confirmation = @user.password
         @user.valid?
-        expect(@user.errors.full_messages).to include('Password Use both English and numbers')
+        expect(@user.errors.full_messages).to include('Password は半角英数字の組合せで入力してください')
       end
 
       it 'passwordに全角が含まれると登録できないこと' do
         @user.password = 'abｚ123'
         @user.password_confirmation = @user.password
         @user.valid?
-        expect(@user.errors.full_messages).to include('Password Use both English and numbers')
+        expect(@user.errors.full_messages).to include('Password は半角英数字の組合せで入力してください')
       end
 
       it 'passwordとpassword_confirmationが不一致では登録できないこと' do
@@ -130,25 +130,25 @@ RSpec.describe User, type: :model do
       it 'last_nameに半角文字があれば登録できないこと' do
         @user.last_name = 'あｱ漢字'
         @user.valid?
-        expect(@user.errors.full_messages).to include('Last name Please enter full-width Japanese')
+        expect(@user.errors.full_messages).to include('Last name は全角日本語で入力してください')
       end
 
       it 'first_nameに半角文字があれば登録できないこと' do
         @user.first_name = 'あｱ漢字'
         @user.valid?
-        expect(@user.errors.full_messages).to include('First name Please enter full-width Japanese')
+        expect(@user.errors.full_messages).to include('First name は全角日本語で入力してください')
       end
 
       it 'read_last_nameに全角カタカナ意外があれば登録できないこと' do
         @user.read_last_name = 'かなカナ'
         @user.valid?
-        expect(@user.errors.full_messages).to include('Read last name Please enter in the full-width katakana')
+        expect(@user.errors.full_messages).to include('Read last name は全角カタカナで入力してください')
       end
 
       it 'read_first_nameに全角カタカナ意外があれば登録できないこと' do
         @user.read_first_name = 'かなカナ'
         @user.valid?
-        expect(@user.errors.full_messages).to include('Read first name Please enter in the full-width katakana')
+        expect(@user.errors.full_messages).to include('Read first name は全角カタカナで入力してください')
       end
 
       it 'emailは先頭が@では登録でないこと' do
