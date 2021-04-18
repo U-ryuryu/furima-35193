@@ -33,6 +33,6 @@ const pay = () => {
   });
 };
 
-if (document.URL.match( /purchases/ )) {
+if (document.URL.match( /purchases/ ) && document.getElementById("card-number") != null) {
   window.addEventListener("load", pay);
 };
