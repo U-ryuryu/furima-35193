@@ -4,6 +4,7 @@ class User < ApplicationRecord
 
   has_many :items
   has_many :purchases
+  has_one :card, dependent: :destroy
 
   PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i.freeze
   NAME_REGEX = /\A[ぁ-んァ-ヶ一-龥々ー]+\z/.freeze

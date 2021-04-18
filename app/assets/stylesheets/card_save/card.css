@@ -1,0 +1,10 @@
+.card-form {
+  background-color: #FFF;
+  width: 70vw;
+  min-width: 450px;
+  padding: 10vh 10vw;
+}
+.Card__title {
+  text-align: center;
+  font-size: 24px;
+}
