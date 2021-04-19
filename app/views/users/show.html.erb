@@ -1,0 +1,63 @@
+<%= render "shared/second-header"%>
+
+<div class='transaction-contents'>
+  <div class='transaction-main'>
+    <table class="detail-table">
+      <tbody>
+        <div class="Card__title">
+          <h1>【ユーザー情報】</h1>
+        </div>
+        <tr>
+          <th class="detail-item">ニックネーム</th>
+          <td class="detail-value"><%= current_user.nickname %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">メールアドレス</th>
+          <td class="detail-value"><%= current_user.email %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">お名前</th>
+          <td class="detail-value"><%= current_user.last_name + "  " + current_user.first_name %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">お名前カナ</th>
+          <td class="detail-value"><%= current_user.read_last_name + "  "  + current_user.read_first_name %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">生年月日</th>
+          <td class="detail-value"><%= "#{current_user.birthday.year}年#{current_user.birthday.mon}月#{current_user.birthday.mday}日" %></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="user-edit-box">
+      <%= link_to "ユーザー情報の編集", edit_user_path, method: :get, class: "user-edit-btn" %>
+    </div>
+
+    <% if current_user.card.present?%>
+    <table class="detail-table">
+      <tbody>
+        <div class="Card__title">
+          <h1>【カード情報】</h1>
+        </div>
+        <tr>
+          <th class="detail-item">カード番号</th>
+          <td class="detail-value"><%= "**** **** **** " + @card[:last4] %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">有効期限</th>
+          <td class="detail-value"><%= @card[:exp_month] %>/<%= @card[:exp_year] %></td>
+        </tr>
+      </tbody>
+    </table>
+    <% else %>
+      <div class="Card__title">
+        <h1>【カード情報が登録されていません】</h1>
+      </div>
+      <div class="user-edit-box">
+      <%= link_to "カード情報登録", new_card_path, method: :get, class: "user-edit-btn" %>
+    </div>
+    <% end %>
+  </div>
+</div>
+
+<%= render "shared/second-footer"%>

@@ -9,6 +9,7 @@ require("@rails/activestorage").start()
 require("channels")
 require("../fee")
 require("../card")
+require("../card_save")
 require("../preview")
 
 

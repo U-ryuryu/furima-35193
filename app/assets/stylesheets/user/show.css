@@ -1,0 +1,16 @@
+.user-edit-box {
+  margin: 25px 0px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.user-edit-btn {
+  text-align: center;
+  background-color: #ea352d;
+  font-size: 20px;
+  font-weight: bold;
+  color: #FFF;
+  margin: 10px 0px 0px;
+  padding: 2vh 5vw;
+
+}
