@@ -1,3 +1,4 @@
+
 const pay = () => {
   Payjp.setPublicKey(process.env.PAYJP_PUBLIC_KEY);
   const form = document.getElementById("charge-form");
@@ -27,11 +28,20 @@ const pay = () => {
         document.getElementById("exp_year").removeAttribute("name");
 
         document.getElementById("charge-form").submit();
+      }else{
+        alert("カード情報が正しくありません")
+
+        document.getElementById("number").removeAttribute("name");
+        document.getElementById("cvc").removeAttribute("name");
+        document.getElementById("exp_month").removeAttribute("name");
+        document.getElementById("exp_year").removeAttribute("name");
+
+        document.getElementById("charge-form").submit();
       }
     });
   });
 };
 
-if (document.URL.match( / cards / )){
+if (document.URL.match( /cards/ )){
   window.addEventListener("load", pay);
 }
