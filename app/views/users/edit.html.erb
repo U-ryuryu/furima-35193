@@ -67,26 +67,12 @@
   <div class='register-btn'>
     <%= f.submit "登録情報変更" ,class:"register-red-btn" %>
   </div>
-</div>
-<% end %>
-
-<%= form_with model: @user, url: user_path(current_user.id), class: 'registration-main', local: true do |f| %>
-<div class='form-wrap'>
-  <div class='form-header'>
-    <h1 class='form-header-text'>
-      会員情報削除
-    </h1>
-  </div>
-  <div class='register-btn'>
-    <%= button_to "会員情報削除", user_path(current_user.id), data: { confirm: "本当に削除しますか？" }, method: :delete, class:"register-red-btn" %>
-  </div>
 
   <div class='user-btn'>
     <h1 class='user-btn-text'>
       <%=link_to 'もどる', :back, class:"user-back-btn" %> 
     </h1>
   </div>
-
 </div>
 <% end %>
 
