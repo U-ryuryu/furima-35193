@@ -1,5 +1,5 @@
 const pay = () => {
-
+  if(document.getElementById("card-info") == null){
   Payjp.setPublicKey(process.env.PAYJP_PUBLIC_KEY);
   const form = document.getElementById("charge-form");
   form.addEventListener("submit",(e) => {
@@ -31,8 +31,10 @@ const pay = () => {
 
     });
   });
+  }
 };
 
-if (document.URL.match( /purchases/ ) && document.getElementById("card-number") != null) {
+
+if (document.URL.match( /purchases/ )) {
   window.addEventListener("load", pay);
-};
+}

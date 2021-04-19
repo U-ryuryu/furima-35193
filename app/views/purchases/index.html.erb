@@ -67,6 +67,22 @@
           <%= f.text_field :cvc,class:"input-default", id:"card-cvc", placeholder:"カード背面4桁もしくは3桁の番号", maxlength:"4" %>
         </div>
       </div>
+    <% else %>
+      <table class="detail-table">
+        <tbody>
+          <div class="Card__title">
+            <h1>カード情報</h1>
+          </div>
+          <tr>
+            <th class="detail-item">カード番号</th>
+            <td class="detail-value"><%= "**** **** **** " + @card[:last4] %></td>
+          </tr>
+          <tr>
+            <th class="detail-item">有効期限</th>
+            <td class="detail-value", id="card-info", value=1><%= @card[:exp_month] %>/<%= @card[:exp_year] %></td>
+          </tr>
+        </tbody>
+      </table>
     <% end %>
 
 

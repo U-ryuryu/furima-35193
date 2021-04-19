@@ -5,9 +5,16 @@ class PurchasesController < ApplicationController
 
   def index
     @purchase_address = PurchaseAddress.new
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    card = Card.find_by(user_id: current_user.id)
+    if card.present?
+      customer = Payjp::Customer.retrieve(card.customer_token)
+      @card = customer.cards.first
+    end
   end
 
   def create
+    binding.pry
     if current_user.card.blank?
       @purchase_address = PurchaseAddress.new(purchase_params)
       if @purchase_address.valid?
